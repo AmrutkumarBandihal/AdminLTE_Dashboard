@@ -1,0 +1,71 @@
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Users</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">User Management</h3>
+                    </div>
+                    <div class="card-body">
+                        <input type="text" id="userSearch" class="form-control" placeholder="Search users...">
+                        
+                        <!-- jqGrid Table -->
+                        <table id="grid"></table>
+                        <div id="pager"></div>
+                        <br><br>
+                        <!-- Drag and drop file -->
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h3 class="card-title">Upload Files</h3>
+                            </div>
+                            <div id="drop-area" class="drop-area">
+                                <p>Drag & Drop files here or <b id="upload-btn">click to upload</b></p>
+                                <input type="file" id="fileInput" hidden multiple />
+                            </div>
+                            <div id="fileList"></div>  
+                                                               
+                            </div>
+                        </div>
+
+                        <!-- Button to Show Notification -->
+                        <button id="showNotification" class="btn btn-primary ml-auto">Show Notification</button>
+                        
+                        <canvas id="userChart" width="400" height="200"></canvas>
+                    </div> 
+                </div>
+                                <!-- Chatbot Modal -->
+<div class="modal fade" id="chatbotModal" tabindex="-1" role="dialog" aria-labelledby="chatbotTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="fas fa-robot"></i> Chatbot Inquiry</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="chatbox" class="chatbox">
+                    <p class="bot-message"><strong>Bot:</strong> Hi! How can I assist you today?</p>
+                </div>
+                <div class="input-group mt-3">
+                    <input type="text" id="userInput" class="form-control" placeholder="Type a message...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>

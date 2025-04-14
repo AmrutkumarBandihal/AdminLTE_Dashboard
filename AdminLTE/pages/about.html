@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Fidrox Technologies Ltd.</title>
+    
+    <!-- AdminLTE & Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/css/custom.css"> 
+
+    <!-- AdminLTE CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!--  jqGrid JS (MUST BE AFTER jQuery) --> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="position: relative;">
+        <ul class="navbar-nav modal-header">
+            <li class="nav-item ">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+
+            <li class="nav-item col-md-12">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+            
+            
+            </ul>
+
+            <!-- Speech search bar -->
+            <div class="input-group speech-search col-md-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search..." />
+                <button id="micButton" class="btn btn-primary">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+            
+            <!-- Notifications -->
+            <li class="nav-link dropdown " style="position: relative;">
+            <a class="nav-link" data-toggle="dropdown" href="#" >
+                    <i class="far fa-bell"></i>
+                    
+                    <span class="badge badge-warning navbar-badge ">3</span> 
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-header">3 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-user-plus text-primary"></i> New user registered
+                        <span class="float-end text-muted text-sm">Just now</span>
+                    </a>
+                    
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-shopping-cart text-success"></i> New order received
+                        <span class="float-end text-muted text-sm">5 min ago</span>
+                    </a>
+                    
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-comment-alt text-danger"></i> New comment on post
+                        <span class="float-end text-muted text-sm">10 min ago</span>
+                    </a>
+                    
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+
+            <!-- To - Do Task -->
+            <!-- Navbar To-Do List Dropdown -->
+            <li class="nav-link dropdown col-md-2" >
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-tasks"></i>Task
+                    <span class="badge badge-danger" id="task-count">1</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-2">
+                    <h3 class="dropdown-header">To-Do List</h3>
+                    <div class="task-container">
+                        <ul id="todo-list" class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Sample Task
+                                <div>
+                                    <button class="btn btn-success btn-sm complete-btn"><i class="fas fa-check"></i></button>
+                                    <button class="btn btn-danger btn-sm delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="p-2">
+                        <input type="text" id="new-task" class="form-control" placeholder="Add a new task...">
+                        <button id="add-task-btn" class="btn btn-primary btn-sm w-100 mt-2">Add Task</button>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Profile -->
+                <!--begin::User Menu Dropdown-->
+                <li class="nav-link dropdown user-menu col-md-2" >
+                    <a href="#" class="nav-link " data-toggle="dropdown">
+                        <img src="../assets/images/user8-128x128.jpg" class="user-image rounded-circle shadow " alt="User Image" height="40px"  />
+                        <span class="d-none d-md-inline">Alexander Pierce</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                        <li class="user-header text-bg-primary">
+                            <img src="../assets/images/user8-128x128.jpg" class="rounded-circle shadow" alt="User Image" />
+                            <p>Alexander Pierce - Web Developer<small>Member since Nov. 2023</small></p>
+                        </li>
+                        <li class="user-body">
+                            <div class="row">
+                                <div class="col-4 text-center"><a href="#">Followers</a></div>
+                                <div class="col-4 text-center"><a href="#">Sales</a></div>
+                                <div class="col-4 text-center"><a href="#">Friends</a></div>
+                            </div>
+                        </li>
+                        <li class="user-footer">
+                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                        </li>
+                    </ul>
+                </li>
+
+            <!-- Language  -->
+            <li class="nav-link dropdown" >
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown">
+                    🌍 Language
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a>
+                    <a class="dropdown-item" href="#" onclick="changeLanguage('fr')">Français</a>
+                    <a class="dropdown-item" href="#" onclick="changeLanguage('es')">Español</a>
+                    <a class="dropdown-item" href="#" onclick="changeLanguage('de')">Deutsch</a>
+                    <a class="dropdown-item" href="#" onclick="changeLanguage('de')">Hindi</a>
+                </div>
+            </li>
+            
+            
+            <li class="nav-link dropdown col-md-2" >
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span id="user-name">Login</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="../pages/login.html" id="login-link" class="dropdown-item">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Login
+                    </a>
+                    <a href="../pages/registration.html" id="register-link" class="dropdown-item">
+                        <i class="fas fa-user-plus mr-2"></i> Register
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" id="logout-link" class="dropdown-item d-none">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                    </a>
+                </div>
+            </li>
+            <!-- Screenshot capture -->
+            <li class="nav-link ">
+                <button id="screenshotBtn" class="btn btn-primary">📸 capture</button>
+                <a id="downloadLink" class="d-none" download="dashboard_screenshot.png"></a>
+            </li>
+            
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Sidebar -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <a href="#" class="brand-link">
+            <span class="brand-text font-weight-light">AdminLTE Dashboard</span>
+        </a>
+        <div class="sidebar">
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="../pages/users.html" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/reports.html" class="nav-link">
+                            <i class="nav-icon fas fa-chart-bar"></i>
+                            <p>Reports</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/application.html" class="nav-link">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>Application Form</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/Employees.html" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Worker Management</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/Leave.html" class="nav-link">
+                            <i class="nav-icon fas fa-calendar-check"></i>
+                            <p>Leave Management</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/about.html" class="nav-link active">
+                            <i class="nav-icon fas fa-info-circle"></i>
+                            <p>About Us</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/contact.html" class="nav-link">
+                            <i class="nav-icon fas fa-envelope"></i> 
+                            <p>Contact Us</p>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="../pages/faq.html" class="nav-link">
+                            <i class="nav-icon fas fa-question-circle"></i>
+                            <p>FAQ</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#chatbotModal">
+                            <i class="nav-icon fas fa-comments"></i>
+                            <p>Assistant Bot</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/feedback.html" class="nav-link">
+                            <!-- <i class="nav-icon fas fa-question-circle"></i> -->
+                            <p>💬 Feedback</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" id="toggleDarkMode" class="nav-link">
+                            <i class="nav-icon fas fa-moon"></i> 
+                            <p>Dark Mode</p>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+    
+
+    </aside>
+
+<!-- wrapper -->
+<div class="wrapper">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>About Us</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container">
+                <!-- Company Overview -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-building"></i> Company Overview</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Fidrox Technologies Ltd. is a leading tech company specializing in cutting-edge solutions in <b>Web Development</b>, <b>Application Development</b>, <b>Cybersecurity</b>, and <b>Railway Signaling Systems</b>. Our team of professionals is dedicated to delivering innovative and efficient digital solutions.</p>
+                    </div>
+                </div>
+
+                <!-- Services Section -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-laptop-code"></i> Web & App Development</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>We specialize in **modern web and mobile app development** using the latest frameworks like **React, Angular, and Flutter** to provide fast, scalable, and user-friendly applications.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-user-shield"></i> Cybersecurity</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Our **cybersecurity solutions** ensure protection against cyber threats, data breaches, and vulnerabilities, providing security audits, ethical hacking, and real-time monitoring.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-train"></i> Railway Signaling</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>We offer **advanced railway signaling systems** that enhance safety, automation, and real-time communication for smooth railway operations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Our Team Section -->
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-users"></i> Our Team</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <img src="https://via.placeholder.com/150" class="rounded-circle img-fluid" alt="Team Member">
+                                <h5 class="mt-2">XYZ</h5>
+                                <p>CEO & Founder</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <img src="https://via.placeholder.com/150" class="rounded-circle img-fluid" alt="Team Member">
+                                <h5 class="mt-2">YYY</h5>
+                                <p>CTO</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <img src="https://via.placeholder.com/150" class="rounded-circle img-fluid" alt="Team Member">
+                                <h5 class="mt-2">ZZZ</h5>
+                                <p>Lead Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Button -->
+                <div class="text-center">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
+                </div>
+
+                <!-- Back Button -->
+                <div class="text-center mt-3">
+                    <button class="btn btn-secondary" id="backButton">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </div>
+            </div>
+        </section>
+                        <!-- Chatbot Modal -->
+<div class="modal fade" id="chatbotModal" tabindex="-1" role="dialog" aria-labelledby="chatbotTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="fas fa-robot"></i> Chatbot Inquiry</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="chatbox" class="chatbox">
+                    <p class="bot-message"><strong>Bot:</strong> Hi! How can I assist you today?</p>
+                </div>
+                <div class="input-group mt-3">
+                    <input type="text" id="userInput" class="form-control" placeholder="Type a message...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="text-center">
+            <p>&copy; 2025 Fidrox Technologies Ltd. All Rights Reserved.</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Scripts -->
+<!--  jQuery (MUST BE FIRST) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+<!-- jqGrid Alternative CDN -->
+<script src="https://cdn.jsdelivr.net/npm/free-jqgrid@4.15.5/js/jquery.jqgrid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#backButton").click(function () {
+            window.history.back();
+        });
+    });
+</script>
+<script>
+    function loadPage(pageUrl) {
+    $("#mainContent").load(pageUrl);
+}
+x
+</script>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Fidrox Technologies</title>
+    <!-- AdminLTE CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!--  jqGrid JS (MUST BE AFTER jQuery) --> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="../assets/css/custom.css" class="rel">
+</head>
+<body class="hold-transition login-page">
+    
+    <div class="wrapper container mt-3 col-sm-12">
+        <div class="container mt-3 col-sm-12">
+            <button class="btn btn-secondary" id="backButton">
+                <i class="fas faw-arrow-left"></i> Back
+            </button>
+        </div>
+    
+    <!-- Content Wrapper -->
+    <div class="container mt-5">
+        <section class="content">
+            <div class="card-header text-center">
+                <!-- Loaded pages will appear here -->
+                <h3>Welcome to Fidrox Technologies Dashboard</h3>
+            </div>
+        </section>
+    </div>
+    
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header text-center">
+            <h3>Frequently Asked Questions</h3>
+        </div>
+        <div class="card-body">
+            <div class="accordion" id="faqAccordion">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#faq1">
+                                How do I reset my password?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="faq1" class="collapse" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            Click on "Forgot Password" on the login page, enter your email, and follow the instructions.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#faq2">
+                                How can I contact support?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="faq2" class="collapse" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            You can contact us via the "Contact Us" page or email us at support@fidrox.com.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#faq3">
+                                What services does Fidrox Technologies provide?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="faq3" class="collapse" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            We specialize in Web Development, Application Development, Cyber Security, and Railway Signaling.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#faq4">
+                                For more help (Assistant..)..
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="faq4" class="collapse" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            You can contact Assistant
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#chatbotModal">
+                                <i class="nav-icon fas fa-comments">click for chatbot</i>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- Chatbot Modal -->
+<div class="modal fade" id="chatbotModal" tabindex="-1" role="dialog" aria-labelledby="chatbotTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="fas fa-robot"></i> Chatbot Inquiry</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="chatbox" class="chatbox">
+                    <p class="bot-message"><strong>Bot:</strong> Hi! How can I assist you today?</p>
+                </div>
+                <div class="input-group mt-3">
+                    <input type="text" id="userInput" class="form-control" placeholder="Type a message...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="main-footer">
+    <div class="text-center">
+        <p>&copy; 2025 Fidrox Technologies Ltd. All Rights Reserved.</p>
+    </div>
+</footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script><!--  AdminLTE -->
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+<!-- jqGrid -->
+<script src="https://cdn.jsdelivr.net/npm/free-jqgrid@4.15.5/js/jquery.jqgrid.min.js"></script>
+<!-- Toastr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<script src="../assets/js/main.js"></script>
+<script>
+    $(document).ready(function () {
+    console.log("FAQ Page Loaded");
+
+    // Handle FAQ accordion toggle
+    $(".faq-question").click(function () {
+        let target = $(this).data("target");
+
+        // Toggle the clicked FAQ item
+        $(target).collapse("toggle");
+
+        // Hide other open FAQs
+        $(".faq-answer").not(target).collapse("hide");
+    });
+});
+
+</script>
+<script>
+    $(document).ready(function () {
+        $("#backButton").click(function () {
+            window.history.back(); // Go to the previous loaded page
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

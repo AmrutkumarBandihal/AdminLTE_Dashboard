@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback with Rating, Save, and Export</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background-color: #f4f6f9;
+    }
+    .card {
+      border-radius: 1rem;
+    }
+    .star-rating {
+      font-size: 1.5rem;
+      color: #ccc;
+      cursor: pointer;
+    }
+    .star-rating .star.selected {
+      color: #f1c40f;
+    }
+    .toast {
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <!-- Feedback Form -->
+  <div class="card shadow">
+    
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Submit Your Feedback</h5>
+    </div>
+    <div class="card-body">
+        <button class="btn btn-secondary mb-3" onclick="window.history.back()">← Back</button>
+      <form id="feedbackForm">
+        <!-- Star Rating -->
+        <div class="mb-3">
+          <label class="form-label">Rate Your Experience</label>
+          <div id="starRating" class="star-rating">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
+          </div>
+        </div>
+
+        <!-- Feedback Text -->
+        <div class="mb-3">
+          <label for="feedbackText" class="form-label">Your Feedback</label>
+          <textarea class="form-control" id="feedbackText" rows="4" required placeholder="Type your feedback..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit Feedback</button>
+        <button type="button" class="btn btn-warning ms-2" onclick="downloadFeedbacks()">Export Feedback</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Feedback Table -->
+  <div class="card shadow mt-4">
+    <div class="card-header bg-secondary text-white">
+      <h6 class="mb-0">Submitted Feedbacks</h6>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered" id="feedbackTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Rating</th>
+            <th>Feedback</th>
+            <th>Word Count</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Feedback Chart -->
+  <div class="card shadow mt-4">
+    <div class="card-header bg-info text-white">
+      <h6 class="mb-0">Feedback Word Count</h6>
+    </div>
+    <div class="card-body">
+      <canvas id="feedbackChart" height="100"></canvas>
+    </div>
+  </div>
+  
+</div>
+
+<!-- Toast -->
+<div id="toastContainer" class="position-fixed bottom-0 end-0 p-3"></div>
+<!-- Footer -->
+<footer class="main-footer">
+    <div class="text-center">
+        <p>&copy; 2025 Fidrox Technologies Ltd. All Rights Reserved.</p>
+    </div>
+</footer>
+<!-- Script -->
+<script>
+
+  let feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+  let selectedRating = 0;
+
+  const ctx = document.getElementById('feedbackChart').getContext('2d');
+  const feedbackChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Word Count',
+        data: [],
+        backgroundColor: 'rgba(241, 196, 15, 0.7)',
+        borderColor: 'rgba(241, 196, 15, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // Star Rating
+  document.querySelectorAll('.star-rating .star').forEach(star => {
+    star.addEventListener('click', () => {
+      selectedRating = star.getAttribute('data-value');
+      highlightStars(selectedRating);
+    });
+  });
+
+  function highlightStars(rating) {
+    document.querySelectorAll('.star-rating .star').forEach(star => {
+      star.classList.remove('selected');
+      if (star.getAttribute('data-value') <= rating) {
+        star.classList.add('selected');
+      }
+    });
+  }
+
+  // Submit Feedback
+  document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const feedbackText = document.getElementById('feedbackText').value.trim();
+    if (!feedbackText) return;
+
+    const wordCount = feedbackText.split(/\s+/).length;
+    const feedback = { rating: selectedRating, text: feedbackText, count: wordCount };
+    feedbacks.push(feedback);
+    localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+
+    updateChart();
+    updateTable();
+
+    document.getElementById('feedbackForm').reset();
+    selectedRating = 0;
+    highlightStars(0);
+    showToast('Thank you for your feedback!');
+  });
+
+  function updateChart() {
+    feedbackChart.data.labels = feedbacks.map((_, i) => `Feedback ${i + 1}`);
+    feedbackChart.data.datasets[0].data = feedbacks.map(f => f.count);
+    feedbackChart.update();
+  }
+
+  function updateTable() {
+    const tbody = document.querySelector('#feedbackTable tbody');
+    tbody.innerHTML = '';
+    feedbacks.forEach((f, i) => {
+      const row = `<tr>
+        <td>${i + 1}</td>
+        <td>${f.rating} &#9733;</td>
+        <td>${f.text}</td>
+        <td>${f.count}</td>
+      </tr>`;
+      tbody.innerHTML += row;
+    });
+  }
+
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast align-items-center text-white bg-success border-0';
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', 'assertive');
+    toast.setAttribute('aria-atomic', 'true');
+    toast.innerHTML = `
+      <div class="d-flex">
+        <div class="toast-body">${message}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>`;
+    document.getElementById('toastContainer').appendChild(toast);
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+    setTimeout(() => toast.remove(), 4000);
+  }
+
+  function downloadFeedbacks() {
+    const data = JSON.stringify(feedbacks, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'feedbacks.text';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  // Initial load
+  updateChart();
+  updateTable();
+ 
+</script>
+
+</body>
+</html>

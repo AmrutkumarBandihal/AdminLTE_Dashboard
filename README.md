@@ -33,8 +33,9 @@ This project is a fully functional, responsive admin dashboard designed using on
 > Note: This dashboard runs entirely on the client side. No server setup or backend configuration is required.
 
 # 📷 Screenshots
-![Uploading Screenshot 2025-04-12 230445.png…]()
+![Screenshot 2025-04-12 230445](https://github.com/user-attachments/assets/a5eada53-a80b-41f1-9675-18c595dcd2ac)
 ![Uploading Screenshot 2025-04-12 230537.png…]()
+
 
 
 

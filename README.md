@@ -34,7 +34,10 @@ This project is a fully functional, responsive admin dashboard designed using on
 
 # 📷 Screenshots
 ![Screenshot 2025-04-12 230445](https://github.com/user-attachments/assets/a5eada53-a80b-41f1-9675-18c595dcd2ac)
-![Uploading Screenshot 2025-04-12 230537.png…]()
+![Screenshot 2025-04-12 230537](https://github.com/user-attachments/assets/ac60e57b-d38a-464c-b0c1-6a714e90349a)
+![Screenshot 2025-04-20 185552](https://github.com/user-attachments/assets/900a3fdd-d908-48c1-bb53-70dcedeabd58)
+
+
 
 
 
